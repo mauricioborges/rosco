@@ -5,6 +5,7 @@ import com.netflix.spinnaker.kork.artifacts.model.Artifact;
 import com.netflix.spinnaker.rosco.manifests.BakeManifestRequest;
 import com.netflix.spinnaker.rosco.manifests.BakeManifestService;
 import groovy.util.logging.Slf4j;
+import io.swagger.annotations.ApiOperation;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class V2BakeryController {
     this.objectMapper = objectMapper;
   }
 
+  @ApiOperation(value = "Bake a k8s Manifest using one of the supported templating tools")
   @RequestMapping(value = "/api/v2/manifest/bake/{type}", method = RequestMethod.POST)
   Artifact doBake(@PathVariable("type") String type, @RequestBody Map<String, Object> request)
       throws IOException {
